@@ -1,0 +1,16 @@
+services:
+  server:
+    build:
+      context: ./server
+    container_name: devops-server-container
+    ports:
+      - "5000:5000"
+
+  client:
+    build:
+      context: ./client
+    container_name: devops-client-container
+    ports:
+      - "5173:5173"
+    depends_on:
+      - server
