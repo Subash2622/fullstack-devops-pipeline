@@ -9,5 +9,3 @@ RUN apt-get update && \
     docker-compose \
     git && \
     apt-get clean
-
-USER jenkins
