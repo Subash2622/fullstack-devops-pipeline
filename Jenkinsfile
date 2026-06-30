@@ -9,13 +9,6 @@ pipeline {
             }
         }
 
-        stage('Show Workspace') {
-            steps {
-                sh 'pwd'
-                sh 'ls -la'
-            }
-        }
-
         stage('Verify Docker') {
             steps {
                 sh 'docker --version'
@@ -23,11 +16,27 @@ pipeline {
             }
         }
 
+        stage('Go to Project') {
+            steps {
+                sh 'cd /workspace && pwd && ls -la'
+            }
+        }
+
+        stage('Build and Deploy') {
+            steps {
+                sh '''
+                    cd /workspace
+                    docker compose down
+                    docker compose up -d --build
+                '''
+            }
+        }
+
     }
 
     post {
         success {
-            echo 'Pipeline executed successfully!'
+            echo 'Application deployed successfully!'
         }
 
         failure {
