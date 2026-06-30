@@ -9,5 +9,4 @@ RUN apt-get update && \
     git && \
     apt-get clean
 
-USER jenkins  
-# Something 
+USER jenkins
